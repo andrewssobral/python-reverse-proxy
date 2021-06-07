@@ -19,7 +19,6 @@ def set_header():
     headers = {
         'Host': hostname
     }
-
     return headers
 
 class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -31,15 +30,12 @@ class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self, body=True):
         sent = False
         try:
-
             url = 'https://{}{}'.format(hostname, self.path)
             req_header = self.parse_headers()
-
             print(req_header)
             print(url)
             resp = requests.get(url, headers=merge_two_dicts(req_header, set_header()), verify=False)
             sent = True
-
             self.send_response(resp.status_code)
             self.send_resp_headers(resp)
             msg = resp.text
@@ -58,10 +54,8 @@ class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
             content_len = int(self.headers.getheader('content-length', 0))
             post_body = self.rfile.read(content_len)
             req_header = self.parse_headers()
-
             resp = requests.post(url, data=post_body, headers=merge_two_dicts(req_header, set_header()), verify=False)
             sent = True
-
             self.send_response(resp.status_code)
             self.send_resp_headers(resp)
             if body:
@@ -92,7 +86,7 @@ class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
 def parse_args(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser(description='Proxy HTTP requests')
     parser.add_argument('--port', dest='port', type=int, default=9999,
-                        help='serve HTTP requests on specified port (default: random)')
+                        help='serve HTTP requests on specified port (default: 9999)')
     parser.add_argument('--hostname', dest='hostname', type=str, default='en.wikipedia.org',
                         help='hostname to be processd (default: en.wikipedia.org)')
     args = parser.parse_args(argv)
