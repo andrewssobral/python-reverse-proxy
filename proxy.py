@@ -11,6 +11,8 @@ hostname = 'en.wikipedia.org'
 def merge_two_dicts(x, y):
     z = x.copy()   # start with x's keys and values
     z.update(y)    # modifies z with y's keys and values & returns None
+    # return {**x, **y}  # https://github.com/MollardMichael/python-reverse-proxy/pull/1
+    # return x | y       # https://github.com/MollardMichael/python-reverse-proxy/pull/3
     return z
 
 def set_header():
