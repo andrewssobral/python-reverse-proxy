@@ -23,3 +23,8 @@ optional arguments:
 http server is starting on en.wikipedia.org port 9999...
 http server is running as reverse proxy
 ```
+
+Enjoy it!
+
+![screenshot](https://raw.githubusercontent.com/andrewssobral/python-reverse-proxy/master/images/screenshot.png)
+
